@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'DrawCircle.dart';
 
@@ -12,7 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-double _scale;
+  double _scale;
+  File _image;
+  final picker = ImagePicker();
 
  @override
   void initState() {
@@ -168,7 +173,7 @@ double _scale;
                     height: 27,
                     ),
                   onTap: () => {
-                    print("gallery")
+                    getImage()
                   },
                 ),
                 cameraButton(),
@@ -190,15 +195,52 @@ double _scale;
     );
   }
 
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+  }
+
+  Widget imageViewer() {
+    if (_image == null) {
+      return Center(
+        child: Text(
+          "Please import a photo",
+          style: TextStyle(
+            color: Color(0xffD8D8D8), 
+            fontStyle: FontStyle.italic,
+            fontSize: 14
+          ),
+        ),
+      );
+    }
+    return Expanded(
+      child: Image.file(
+        _image, 
+        fit: BoxFit.fitWidth, 
+        width: MediaQuery.of(context).size.width, 
+        height: MediaQuery.of(context).size.height,
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      
+      body: Container(
+        color: Colors.black,
+        child: Stack(
         children: <Widget>[
-          Image.asset('assets/images/woman.png'),
+          //Image.asset('assets/images/woman.png'),
+          imageViewer(),
           topBar(),
           bottomBar(),
         ],
+      ),
       )
     );
   }
