@@ -134,48 +134,57 @@ double _scale;
     return Positioned(
       bottom: 0.0,
       left: 0.0,
-      height: 130,
+      height: 150,
       width: MediaQuery.of(context).size.width,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              Colors.transparent,
-              Colors.black54
-            ],
-          )          
-        ),
+      child: Transform.translate(
+        offset: Offset(0.0, 0.7),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              GestureDetector(
-                child: Image.asset(
-                  "assets/images/gallery.png",
-                  width: 30,
-                  height: 30,
-                  ),
-                onTap: () => {
-                  print("gallery")
-                },
-              ),
-              cameraButton(),
-              GestureDetector(
-                child: Image.asset(
-                  "assets/images/focus.png",
-                  width: 30,
-                  height: 30,
-                  ),
-                onTap: () => {
-                  print("focus")
-                },
-              ),
-            ],
-          ),
+          padding: EdgeInsets.only(bottom: 0),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Colors.transparent,
+                  Colors.black87,
+                  Colors.black,
+                ],
+                stops: [
+                  0.0,
+                  0.9,
+                  1.0
+                ]
+              )          
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                GestureDetector(
+                  child: Image.asset(
+                    "assets/images/gallery.png",
+                    width: 27,
+                    height: 27,
+                    ),
+                  onTap: () => {
+                    print("gallery")
+                  },
+                ),
+                cameraButton(),
+                GestureDetector(
+                  child: Image.asset(
+                    "assets/images/focus.png",
+                    width: 27,
+                    height: 27,
+                    ),
+                  onTap: () => {
+                    print("focus")
+                  },
+                ),
+              ],
+            ),
+          )
         )
       )
     );
@@ -184,7 +193,6 @@ double _scale;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Stack(
         children: <Widget>[
           Image.asset('assets/images/woman.png'),
