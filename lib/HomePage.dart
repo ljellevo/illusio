@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:parallax/utils/Enums.dart';
 
 import 'DrawCircle.dart';
 
@@ -17,11 +18,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _scale;
   File _image;
+  HomeViewState _homeViewState;
   final picker = ImagePicker();
 
  @override
   void initState() {
     super.initState();
+    _homeViewState = HomeViewState.camera;
     _scale = 1.0;
   }
 
@@ -111,6 +114,9 @@ class _HomePageState extends State<HomePage> {
         //onDoubleTap: () {showHangoutPanel();},
         onTap: () {
           print("camera");
+          setState(() {
+            _homeViewState = HomeViewState.camera;
+          });
         },
         child: Container(
           height: 70,
@@ -195,20 +201,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
-      _image = File(pickedFile.path);
+      if(pickedFile == null) {
+        _homeViewState = HomeViewState.camera;
+      } else {
+        _image = File(pickedFile.path);
+        _homeViewState = HomeViewState.gallery;
+         
+      }
     });
   }
 
   Widget imageViewer() {
-    if (_image == null) {
+    if (_homeViewState == HomeViewState.camera) {
       return Center(
         child: Text(
-          "Please import a photo",
+          "Camera is active",
           style: TextStyle(
             color: Color(0xffD8D8D8), 
             fontStyle: FontStyle.italic,
@@ -216,15 +227,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
+    } else {
+      return Expanded(
+        child: Image.file(
+          _image, 
+          fit: BoxFit.fitWidth, 
+          width: MediaQuery.of(context).size.width, 
+          height: MediaQuery.of(context).size.height,
+        )
+      );
     }
-    return Expanded(
-      child: Image.file(
-        _image, 
-        fit: BoxFit.fitWidth, 
-        width: MediaQuery.of(context).size.width, 
-        height: MediaQuery.of(context).size.height,
-      )
-    );
   }
 
   @override

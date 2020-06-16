@@ -1,0 +1,4 @@
+enum HomeViewState {
+  gallery,
+  camera
+  }
