@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:parallax/utils/DrawCircle.dart';
 import 'package:parallax/utils/Enums.dart';
 
-import 'DrawCircle.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> _effects = ["mura masa", "ken burns", "sicko mode"];
   double _scale;
   File _image;
   HomeViewState _homeViewState;
@@ -62,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 child: Text(
-                  "mura masa", 
+                  "", 
                   style: TextStyle(
                     color: Color(0xffD8D8D8), 
                     fontStyle: FontStyle.italic,
@@ -239,20 +242,57 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+
+  void gesturePanUpdateHandler(DragUpdateDetails detail) {
+    if (detail.delta.dx > 0) {
+      print("Dragging in +X direction");
+    } else {
+      print("Dragging in -X direction");  
+    }
+  }
+
+  void gesturePanEndedHandler(DragEndDetails detail) {
+    print("Dragging ended");
+  }
+
+
+  Widget overlay(context) {
+    return PageView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: _effects.length,
+      itemBuilder: (context, i) {
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: EdgeInsets.only(top: 53),
+              child: Text(_effects[i], style: TextStyle(
+                color: Color(0xffD8D8D8), 
+                fontStyle: FontStyle.italic,
+                fontSize: 14,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          )
+        );
+      }
+    );
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
         color: Colors.black,
         child: Stack(
-        children: <Widget>[
-          //Image.asset('assets/images/woman.png'),
-          imageViewer(),
-          topBar(),
-          bottomBar(),
-        ],
-      ),
+          children: <Widget>[
+            imageViewer(),
+            topBar(),
+            bottomBar(),
+            overlay(context)
+          ],
+        ),
       )
     );
   }
