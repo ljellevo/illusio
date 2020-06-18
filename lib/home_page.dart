@@ -4,14 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:parallax/components/image_viewer.dart';
 import 'package:parallax/components/top_button_bar.dart';
+import 'package:parallax/more_page.dart';
 import 'components/bottom_button_bar.dart';
 import 'components/gradient_backgound.dart';
 import 'components/overlay_effect_selector.dart';
 import 'utils/enums.dart';
-
-
-
-
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -52,6 +49,10 @@ class _HomePageState extends State<HomePage> {
 
   void moreOnClick() {
     print("more root");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MorePage()),
+    );
   }
 
   void cameraButtonOnClick() {
