@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:screen/screen.dart';
 
-import 'HomePage.dart';
+import 'home_page.dart';
 
 
 void main() {
