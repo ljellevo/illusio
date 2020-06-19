@@ -23,6 +23,8 @@ environment:
 dependencies:
   image_picker: ^0.6.7+1
   screen: ^0.0.5
+  flutter_markdown: ^0.4.2
+  http: ^0.12.1
   flutter:
     sdk: flutter
 
