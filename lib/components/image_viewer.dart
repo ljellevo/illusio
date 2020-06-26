@@ -14,18 +14,65 @@ class ImageViewer extends StatefulWidget {
   }
 }
 
-class _ImageViewerState extends State<ImageViewer> {
+class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin {
+  bool bottom = true;
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      duration: Duration(milliseconds: 500),
+      vsync: this,
+    );
+    animationController.repeat(reverse: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (this.widget.homeViewState == HomeViewState.camera) {
-      return Center(
-        child: Text(
-          "Camera is active",
-          style: TextStyle(
-            color: Color(0xffD8D8D8), 
-            fontStyle: FontStyle.italic,
-            fontSize: 14
-          ),
+      return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: Text(
+                "please import an image",
+                style: TextStyle(
+                  color: Color(0xffD8D8D8), 
+                  fontStyle: FontStyle.italic,
+                  fontSize: 14
+                ),
+              ),
+            ),
+            AnimatedBuilder(
+              animation: animationController,
+              builder: (BuildContext context, Widget child) {
+                final pos = 120 + (animationController.value * 7);
+                return Positioned(
+                  bottom: pos,
+                  left: 0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Image.asset(
+                          "assets/images/arrow-down.png",
+                          width: 24,
+                          height: 24,
+                        ),
+                        Container(width: 70),
+                        Container(width: 24),
+                      ],
+                    ),
+                  )
+                );
+              },
+            ),
+          ],
         ),
       );
     } else {

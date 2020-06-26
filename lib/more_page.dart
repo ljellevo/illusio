@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:parallax/utils/more_list_class.dart';
 
-import 'how_it_works.dart';
+import 'markdown_view.dart';
 
 class MorePage extends StatefulWidget {
   final List<MoreList> entries = [
-    new MoreList("Upcoming features", "assets/images/upcoming_features.png"),
-    new MoreList("Release notes", "assets/images/release_notes.png"),
-    new MoreList("How does it work?", "assets/images/cpu.png"),
-    new MoreList("About us", "assets/images/about.png"),
-    new MoreList("Privacy", "assets/images/privacy.png"),
-    new MoreList("Terms of Agreement", "assets/images/toa.png"),
-    new MoreList("Code of Conduct", "assets/images/coc.png"),
-    new MoreList("Feedback", "assets/images/feedback.png"),
-    new MoreList("Report bug", "assets/images/bug.png"),
+    new MoreList("Upcoming features", "upcoming_features", "assets/images/upcoming_features.png"),
+    new MoreList("Release notes", "release_notes", "assets/images/release_notes.png"),
+    new MoreList("How does it work?", "how_it_works", "assets/images/cpu.png"),
+    new MoreList("About us", "about_us", "assets/images/about.png"),
+    new MoreList("Privacy", "privacy", "assets/images/privacy.png"),
+    new MoreList("Terms of Agreement", "terms_of_agreement", "assets/images/toa.png"),
+    new MoreList("Code of Conduct", "code_of_conduct", "assets/images/coc.png"),
+    new MoreList("Feedback", "feedback", "assets/images/feedback.png"),
+    new MoreList("Report bug", "report_bug", "assets/images/bug.png"),
     
   ];
   MorePage({Key key}) : super(key: key);
@@ -26,20 +26,16 @@ class MorePage extends StatefulWidget {
 
 class _MorePageState extends State<MorePage> {
 
-//
   @override
   void initState() {
     super.initState();
 
   }
   void rowClicked(int i) {
-    if(i == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HowItWorks()),
-      );
-    }
-    print(i);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MarkdownView(view: this.widget.entries[i].getPath())),
+    );
     
   }
 
