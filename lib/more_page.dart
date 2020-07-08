@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:parallax/utils/more_list_class.dart';
+import 'package:illusio/utils/more_list_class.dart';
 
 import 'markdown_view.dart';
 
 class MorePage extends StatefulWidget {
   final List<MoreList> entries = [
-    new MoreList("Upcoming features", "upcoming_features", "assets/images/upcoming_features.png"),
-    new MoreList("Release notes", "release_notes", "assets/images/release_notes.png"),
-    new MoreList("How does it work?", "how_it_works", "assets/images/cpu.png"),
-    new MoreList("About us", "about_us", "assets/images/about.png"),
-    new MoreList("Privacy", "privacy", "assets/images/privacy.png"),
-    new MoreList("Terms of Agreement", "terms_of_agreement", "assets/images/toa.png"),
-    new MoreList("Code of Conduct", "code_of_conduct", "assets/images/coc.png"),
-    new MoreList("Feedback", "feedback", "assets/images/feedback.png"),
-    new MoreList("Report bug", "report_bug", "assets/images/bug.png"),
+    new MoreList("Upcoming features", "upcoming_features", "assets/icons/upcoming_features.png"),
+    new MoreList("Release notes", "release_notes", "assets/icons/release_notes.png"),
+    new MoreList("How does it work?", "how_it_works", "assets/icons/cpu.png"),
+    new MoreList("About us", "about_us", "assets/icons/about.png"),
+    new MoreList("Privacy", "privacy", "assets/icons/privacy.png"),
+    new MoreList("Terms of Agreement", "terms_of_agreement", "assets/icons/toa.png"),
+    new MoreList("Code of Conduct", "code_of_conduct", "assets/icons/coc.png"),
+    new MoreList("Feedback", "feedback", "assets/icons/feedback.png"),
+    new MoreList("Report bug", "report_bug", "assets/icons/bug.png"),
     
   ];
   MorePage({Key key}) : super(key: key);

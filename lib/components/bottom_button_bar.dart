@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:illusio/utils/enums.dart';
 import '../utils/draw_circle.dart';
 
 class BottomButtonBar extends StatefulWidget {
   final Function cameraButtonOnClick;
   final Function galleryButtonOnClick;
   final Function focusButtonOnClick;
+  final HomeViewState homeViewState;
   final picker = ImagePicker();
-  BottomButtonBar({Key key, this.cameraButtonOnClick, this.galleryButtonOnClick, this.focusButtonOnClick}) : super(key: key);
+  BottomButtonBar({Key key, this.cameraButtonOnClick, this.galleryButtonOnClick, this.focusButtonOnClick, this.homeViewState}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -65,23 +67,48 @@ class _BottomButtonBarState extends State<BottomButtonBar> {
             children: <Widget>[
               GestureDetector(
                 child: Image.asset(
-                  "assets/images/gallery.png",
+                  "assets/icons/gallery.png",
                   width: 27,
                   height: 27,
-                  ),
+                ),
                 onTap: () => {
                   getImage()
                 },
               ),
-              cameraButton(),
+              Image.asset(
+                "assets/icons/arrow-right.png",
+                width: 15,
+                height: 15,
+                color: this.widget.homeViewState == HomeViewState.init ? Colors.white38 : null,
+              ),
+              /*
               GestureDetector(
                 child: Image.asset(
-                  "assets/images/focus.png",
+                  "assets/images/generate-button.png",
+                  width: 70,
+                  height: 70,
+                  ),
+                onTap: () => {
+                  this.widget.cameraButtonOnClick
+                },
+              ),
+              */
+              GestureDetector(
+                child: Image.asset(
+                  "assets/icons/focus.png",
                   width: 27,
                   height: 27,
-                  ),
+                  color: this.widget.homeViewState == HomeViewState.init ? Colors.white38 : null,
+                ),
                 onTap: this.widget.focusButtonOnClick,
               ),
+              Image.asset(
+                "assets/icons/arrow-right.png",
+                width: 15,
+                height: 15,
+                color: this.widget.homeViewState == HomeViewState.init ||  this.widget.homeViewState == HomeViewState.gallery ? Colors.white38 : null,
+              ),
+              cameraButton(),
             ],
           ),
         )

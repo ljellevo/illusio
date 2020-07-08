@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:illusio/classes/image_payload.dart';
+import 'package:illusio/utils/network.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:parallax/components/image_viewer.dart';
-import 'package:parallax/components/top_button_bar.dart';
-import 'package:parallax/more_page.dart';
+import 'package:illusio/components/image_viewer.dart';
+import 'package:illusio/components/top_button_bar.dart';
+import 'package:illusio/more_page.dart';
 import 'components/bottom_button_bar.dart';
 import 'components/gradient_backgound.dart';
 import 'components/overlay_effect_selector.dart';
@@ -29,7 +32,7 @@ class _HomePageState extends State<HomePage> {
  @override
   void initState() {
     super.initState();
-    _homeViewState = HomeViewState.camera;
+    _homeViewState = HomeViewState.init;
     _currentEffect = _effects[0];
     controller.addListener(() {
       setState(() {
@@ -55,17 +58,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void cameraButtonOnClick() {
-    setState(() {
-      _homeViewState = HomeViewState.camera;
-      _image = null;
-    });
-  }
+
 
   void galleryButtonOnClick(PickedFile pickedFile) {
     setState(() {
       if(pickedFile == null && _image == null) {
-        _homeViewState = HomeViewState.camera;
+        _homeViewState = HomeViewState.init;
       } else if(pickedFile == null && _image != null) {
         _homeViewState = HomeViewState.gallery;
       } else {
@@ -77,6 +75,21 @@ class _HomePageState extends State<HomePage> {
 
   void focusButtonOnClick() {
     print("focus root");
+    setState(() {
+      _homeViewState = HomeViewState.focus;
+    });
+  }
+
+  void cameraButtonOnClick() async {
+    ImagePlayload imagePlayload = new ImagePlayload(_currentEffect, _image);
+    Network network = new Network();
+    network.uploadImage(json.encode(imagePlayload));
+    /*
+    setState(() {
+      _homeViewState = HomeViewState.init;
+      _image = null;
+    });
+    */
   }
   
   @override
@@ -90,7 +103,7 @@ class _HomePageState extends State<HomePage> {
             GradientBackgound(),
             OverlayEffectSelector(controller: controller, onPageChanged: onPageChanged, effects: _effects, currentPageValue: currentPageValue,),
             TopButtonBar(shareOnClick: shareOnClick, moreOnClick: moreOnClick),
-            BottomButtonBar(cameraButtonOnClick: cameraButtonOnClick, galleryButtonOnClick: galleryButtonOnClick, focusButtonOnClick: focusButtonOnClick)
+            BottomButtonBar(cameraButtonOnClick: cameraButtonOnClick, galleryButtonOnClick: galleryButtonOnClick, focusButtonOnClick: focusButtonOnClick, homeViewState: _homeViewState,)
           ],
         ),
       )

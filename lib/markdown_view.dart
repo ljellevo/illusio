@@ -3,6 +3,8 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:illusio/utils/environment_config.dart';
+
 class MarkdownView extends StatefulWidget {
   final String view;
   MarkdownView({Key key, this.view}) : super(key: key);
@@ -16,7 +18,7 @@ class MarkdownView extends StatefulWidget {
 class _MarkdownViewState extends State<MarkdownView> {
   String _markdownSource;
   Future<http.Response> fetchAlbum() {
-    return http.get('https://parallax-server.herokuapp.com/api/' + this.widget.view);
+    return http.get(EnvironmentConfig.URL + '/api/' + this.widget.view);
   }
 
   @override
@@ -27,8 +29,11 @@ class _MarkdownViewState extends State<MarkdownView> {
 
    void getMarkdown() async {
     http.Response temp = await fetchAlbum();
+    
     Map<String, dynamic> res = json.decode(temp.body);
+    print(res["data"]);
     String markdown = res["data"];
+    print(markdown);
     setState(() {
       _markdownSource = markdown;
     });

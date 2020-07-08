@@ -48,7 +48,7 @@ class _TopButtonBarState extends State<TopButtonBar> {
                     
                     GestureDetector(
                       child: Image.asset(
-                        "assets/images/share.png",
+                        "assets/icons/share.png",
                         width: 20,
                         height: 20,
                         ),
@@ -57,7 +57,7 @@ class _TopButtonBarState extends State<TopButtonBar> {
                     
                       GestureDetector(
                       child: Image.asset(
-                        "assets/images/more.png",
+                        "assets/icons/more.png",
                         width: 20,
                         height: 20,
                         ),

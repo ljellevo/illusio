@@ -1,4 +1,6 @@
 enum HomeViewState {
+  init,
   gallery,
-  camera
+  focus,
+  ready
 }

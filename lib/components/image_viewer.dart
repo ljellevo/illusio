@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:parallax/utils/enums.dart';
+import 'package:illusio/utils/enums.dart';
 
 class ImageViewer extends StatefulWidget {
   final HomeViewState homeViewState;
@@ -30,7 +30,7 @@ class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    if (this.widget.homeViewState == HomeViewState.camera) {
+    if (this.widget.homeViewState == HomeViewState.init) {
       return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -60,12 +60,14 @@ class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Image.asset(
-                          "assets/images/arrow-down.png",
+                          "assets/icons/arrow-down.png",
                           width: 24,
                           height: 24,
                         ),
-                        Container(width: 70),
+                        Container(width: 15),
                         Container(width: 24),
+                        Container(width: 15),
+                        Container(width: 70),
                       ],
                     ),
                   )
