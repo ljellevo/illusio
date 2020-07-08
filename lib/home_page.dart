@@ -8,10 +8,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:illusio/components/image_viewer.dart';
 import 'package:illusio/components/top_button_bar.dart';
 import 'package:illusio/more_page.dart';
-import 'components/bottom_button_bar.dart';
-import 'components/gradient_backgound.dart';
-import 'components/overlay_effect_selector.dart';
-import 'utils/enums.dart';
+import 'package:illusio/components/bottom_button_bar.dart';
+import 'package:illusio/components/gradient_backgound.dart';
+import 'package:illusio/components/overlay_effect_selector.dart';
+import 'package:illusio/utils/enums.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);

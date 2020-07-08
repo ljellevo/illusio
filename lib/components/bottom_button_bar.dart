@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:illusio/utils/enums.dart';
-import '../utils/draw_circle.dart';
+import 'package:illusio/utils/draw_circle.dart';
 
 class BottomButtonBar extends StatefulWidget {
   final Function cameraButtonOnClick;

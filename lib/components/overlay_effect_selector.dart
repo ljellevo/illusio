@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/cosmetic_helpers.dart';
+import 'package:illusio/utils/cosmetic_helpers.dart';
 
 class OverlayEffectSelector extends StatefulWidget {
   final PageController controller;
