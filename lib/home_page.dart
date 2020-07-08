@@ -11,7 +11,9 @@ import 'package:illusio/more_page.dart';
 import 'package:illusio/components/bottom_button_bar.dart';
 import 'package:illusio/components/gradient_backgound.dart';
 import 'package:illusio/components/overlay_effect_selector.dart';
-import 'package:illusio/utils/enums.dart';
+
+enum HomeViewState { init, gallery, focus, ready }
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:illusio/utils/enums.dart';
+import 'package:illusio/home_page.dart';
+
 
 class ImageViewer extends StatefulWidget {
   final HomeViewState homeViewState;
