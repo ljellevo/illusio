@@ -59,33 +59,32 @@ class _MorePageState extends State<MorePage> {
       body: Padding(
         padding: EdgeInsets.only(top: 20),
         child: ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: this.widget.entries.length,
-          itemBuilder: (BuildContext context, int i) {
-            return Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              child: ListTile(
-                onTap: () => rowClicked(i),
-                contentPadding: EdgeInsets.only(left: 20),
-                leading: Image.asset(
-                  this.widget.entries[i].getIcon(),
-                  width: 24,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: this.widget.entries.length,
+            itemBuilder: (BuildContext context, int i) {
+              return Theme(
+                data: ThemeData(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                 ),
-                title: Text(
-                  this.widget.entries[i].getTitle(),
-                  style: TextStyle(
-                    color: Color(0xffD8D8D8),
-                    fontStyle: FontStyle.italic,
-                    fontSize: 14,
+                child: ListTile(
+                  onTap: () => rowClicked(i),
+                  contentPadding: EdgeInsets.only(left: 20),
+                  leading: Image.asset(
+                    this.widget.entries[i].getIcon(),
+                    width: 24,
+                  ),
+                  title: Text(
+                    this.widget.entries[i].getTitle(),
+                    style: TextStyle(
+                      color: Color(0xffD8D8D8),
+                      fontStyle: FontStyle.italic,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
-              ),
-            );
-          }
-        ),
+              );
+            }),
       ),
     );
   }

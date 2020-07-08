@@ -65,6 +65,5 @@ class _TopButtonBarState extends State<TopButtonBar> {
             ],
           ),
         ));
-    
   }
 }
