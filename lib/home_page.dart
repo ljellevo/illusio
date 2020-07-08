@@ -81,9 +81,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void cameraButtonOnClick() async {
+    print("Clicked");
     ImagePlayload imagePlayload = new ImagePlayload(_currentEffect, _image);
     Network network = new Network();
-    network.uploadImage(json.encode(imagePlayload));
+    await network.uploadImage(json.encode(imagePlayload));
     /*
     setState(() {
       _homeViewState = HomeViewState.init;

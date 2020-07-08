@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:illusio/utils/environment_config.dart';
+
 class Network {
   Future<http.Response> uploadImage(String imagePlayload) async {
     /*
@@ -29,8 +31,9 @@ class Network {
       print(value);
     });
     */
-    String url = "";
-    final response = await http.post(url, body: imagePlayload);
+    print("Triggered");
+    print(EnvironmentConfig.URL);
+    final response = await http.post(EnvironmentConfig.URL + '/api/image', headers: {"Content-Type": "application/json"}, body: imagePlayload);
     final responseJson = json.decode(response.body);
     print(responseJson);
     return response;
