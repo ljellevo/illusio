@@ -1,4 +1,4 @@
-name: Flutter CI Master
+name: Flutter CI Dev
 
 # This workflow is triggered on pushes to the repository.
 
