@@ -7,7 +7,6 @@ class MoreList {
     this._title = title;
     this._path = path;
     this._icon = icon;
-  
   }
 
   String getTitle() {
@@ -21,5 +20,4 @@ class MoreList {
   String getIcon() {
     return _icon;
   }
-
 }

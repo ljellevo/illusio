@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   PageController controller = PageController();
   var currentPageValue = 0.0;
 
- @override
+  @override
   void initState() {
     super.initState();
     _homeViewState = HomeViewState.init;
@@ -58,13 +58,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-
   void galleryButtonOnClick(PickedFile pickedFile) {
     setState(() {
-      if(pickedFile == null && _image == null) {
+      if (pickedFile == null && _image == null) {
         _homeViewState = HomeViewState.init;
-      } else if(pickedFile == null && _image != null) {
+      } else if (pickedFile == null && _image != null) {
         _homeViewState = HomeViewState.gallery;
       } else {
         _image = File(pickedFile.path);
@@ -91,22 +89,34 @@ class _HomePageState extends State<HomePage> {
     });
     */
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.black,
-        child: Stack(
-          children: <Widget>[
-            ImageViewer(homeViewState: _homeViewState, image: _image,),
-            GradientBackgound(),
-            OverlayEffectSelector(controller: controller, onPageChanged: onPageChanged, effects: _effects, currentPageValue: currentPageValue,),
-            TopButtonBar(shareOnClick: shareOnClick, moreOnClick: moreOnClick),
-            BottomButtonBar(cameraButtonOnClick: cameraButtonOnClick, galleryButtonOnClick: galleryButtonOnClick, focusButtonOnClick: focusButtonOnClick, homeViewState: _homeViewState,)
-          ],
-        ),
-      )
-    );
+        body: Container(
+      color: Colors.black,
+      child: Stack(
+        children: <Widget>[
+          ImageViewer(
+            homeViewState: _homeViewState,
+            image: _image,
+          ),
+          GradientBackgound(),
+          OverlayEffectSelector(
+            controller: controller,
+            onPageChanged: onPageChanged,
+            effects: _effects,
+            currentPageValue: currentPageValue,
+          ),
+          TopButtonBar(shareOnClick: shareOnClick, moreOnClick: moreOnClick),
+          BottomButtonBar(
+            cameraButtonOnClick: cameraButtonOnClick,
+            galleryButtonOnClick: galleryButtonOnClick,
+            focusButtonOnClick: focusButtonOnClick,
+            homeViewState: _homeViewState,
+          )
+        ],
+      ),
+    ));
   }
 }

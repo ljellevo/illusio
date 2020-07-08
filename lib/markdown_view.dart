@@ -27,9 +27,9 @@ class _MarkdownViewState extends State<MarkdownView> {
     getMarkdown();
   }
 
-   void getMarkdown() async {
+  void getMarkdown() async {
     http.Response temp = await fetchAlbum();
-    
+
     Map<String, dynamic> res = json.decode(temp.body);
     print(res["data"]);
     String markdown = res["data"];
@@ -41,7 +41,7 @@ class _MarkdownViewState extends State<MarkdownView> {
 
   TextStyle baseTextStyle(double fontSize) {
     return TextStyle(
-      color: Color(0xffD8D8D8), 
+      color: Color(0xffD8D8D8),
       fontStyle: FontStyle.italic,
       fontSize: fontSize,
     );
@@ -55,18 +55,15 @@ class _MarkdownViewState extends State<MarkdownView> {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        child: 
-        Markdown(
-          data: _markdownSource != null ? _markdownSource : "",
-          styleSheet: MarkdownStyleSheet(
-            p: baseTextStyle(14),
-            h1: baseTextStyle(20),
-            h2: baseTextStyle(20),
-            h3: baseTextStyle(16)
-          ),
-        )
-      ),
+          width: MediaQuery.of(context).size.width,
+          child: Markdown(
+            data: _markdownSource != null ? _markdownSource : "",
+            styleSheet: MarkdownStyleSheet(
+                p: baseTextStyle(14),
+                h1: baseTextStyle(20),
+                h2: baseTextStyle(20),
+                h3: baseTextStyle(16)),
+          )),
     );
   }
 }

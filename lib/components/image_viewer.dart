@@ -14,7 +14,8 @@ class ImageViewer extends StatefulWidget {
   }
 }
 
-class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin {
+class _ImageViewerState extends State<ImageViewer>
+    with TickerProviderStateMixin {
   bool bottom = true;
   AnimationController animationController;
 
@@ -40,10 +41,9 @@ class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin
               child: Text(
                 "please import an image",
                 style: TextStyle(
-                  color: Color(0xffD8D8D8), 
-                  fontStyle: FontStyle.italic,
-                  fontSize: 14
-                ),
+                    color: Color(0xffD8D8D8),
+                    fontStyle: FontStyle.italic,
+                    fontSize: 14),
               ),
             ),
             AnimatedBuilder(
@@ -51,27 +51,26 @@ class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin
               builder: (BuildContext context, Widget child) {
                 final pos = 120 + (animationController.value * 7);
                 return Positioned(
-                  bottom: pos,
-                  left: 0,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Image.asset(
-                          "assets/icons/arrow-down.png",
-                          width: 24,
-                          height: 24,
-                        ),
-                        Container(width: 15),
-                        Container(width: 24),
-                        Container(width: 15),
-                        Container(width: 70),
-                      ],
-                    ),
-                  )
-                );
+                    bottom: pos,
+                    left: 0,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/icons/arrow-down.png",
+                            width: 24,
+                            height: 24,
+                          ),
+                          Container(width: 15),
+                          Container(width: 24),
+                          Container(width: 15),
+                          Container(width: 70),
+                        ],
+                      ),
+                    ));
               },
             ),
           ],
@@ -79,9 +78,9 @@ class _ImageViewerState extends State<ImageViewer> with TickerProviderStateMixin
       );
     } else {
       return Image.file(
-        this.widget.image, 
-        fit: BoxFit.fitWidth, 
-        width: MediaQuery.of(context).size.width, 
+        this.widget.image,
+        fit: BoxFit.fitWidth,
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
       );
     }

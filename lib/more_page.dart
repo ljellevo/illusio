@@ -5,16 +5,18 @@ import 'markdown_view.dart';
 
 class MorePage extends StatefulWidget {
   final List<MoreList> entries = [
-    new MoreList("Upcoming features", "upcoming_features", "assets/icons/upcoming_features.png"),
-    new MoreList("Release notes", "release_notes", "assets/icons/release_notes.png"),
+    new MoreList("Upcoming features", "upcoming_features",
+        "assets/icons/upcoming_features.png"),
+    new MoreList(
+        "Release notes", "release_notes", "assets/icons/release_notes.png"),
     new MoreList("How does it work?", "how_it_works", "assets/icons/cpu.png"),
     new MoreList("About us", "about_us", "assets/icons/about.png"),
     new MoreList("Privacy", "privacy", "assets/icons/privacy.png"),
-    new MoreList("Terms of Agreement", "terms_of_agreement", "assets/icons/toa.png"),
+    new MoreList(
+        "Terms of Agreement", "terms_of_agreement", "assets/icons/toa.png"),
     new MoreList("Code of Conduct", "code_of_conduct", "assets/icons/coc.png"),
     new MoreList("Feedback", "feedback", "assets/icons/feedback.png"),
     new MoreList("Report bug", "report_bug", "assets/icons/bug.png"),
-    
   ];
   MorePage({Key key}) : super(key: key);
 
@@ -25,18 +27,18 @@ class MorePage extends StatefulWidget {
 }
 
 class _MorePageState extends State<MorePage> {
-
   @override
   void initState() {
     super.initState();
-
   }
+
   void rowClicked(int i) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MarkdownView(view: this.widget.entries[i].getPath())),
+      MaterialPageRoute(
+          builder: (context) =>
+              MarkdownView(view: this.widget.entries[i].getPath())),
     );
-    
   }
 
   @override
@@ -46,7 +48,7 @@ class _MorePageState extends State<MorePage> {
         title: Text(
           "parallax",
           style: TextStyle(
-            color: Color(0xffD8D8D8), 
+            color: Color(0xffD8D8D8),
             fontStyle: FontStyle.italic,
             fontSize: 14,
           ),
@@ -68,13 +70,14 @@ class _MorePageState extends State<MorePage> {
               child: ListTile(
                 onTap: () => rowClicked(i),
                 contentPadding: EdgeInsets.only(left: 20),
-                leading: Image.asset(this.widget.entries[i].getIcon(),
+                leading: Image.asset(
+                  this.widget.entries[i].getIcon(),
                   width: 24,
                 ),
                 title: Text(
-                  this.widget.entries[i].getTitle(), 
+                  this.widget.entries[i].getTitle(),
                   style: TextStyle(
-                    color: Color(0xffD8D8D8), 
+                    color: Color(0xffD8D8D8),
                     fontStyle: FontStyle.italic,
                     fontSize: 14,
                   ),
@@ -85,6 +88,5 @@ class _MorePageState extends State<MorePage> {
         ),
       ),
     );
-    
   }
 }

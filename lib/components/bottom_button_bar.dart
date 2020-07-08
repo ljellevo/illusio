@@ -9,7 +9,13 @@ class BottomButtonBar extends StatefulWidget {
   final Function focusButtonOnClick;
   final HomeViewState homeViewState;
   final picker = ImagePicker();
-  BottomButtonBar({Key key, this.cameraButtonOnClick, this.galleryButtonOnClick, this.focusButtonOnClick, this.homeViewState}) : super(key: key);
+  BottomButtonBar(
+      {Key key,
+      this.cameraButtonOnClick,
+      this.galleryButtonOnClick,
+      this.focusButtonOnClick,
+      this.homeViewState})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -18,8 +24,9 @@ class BottomButtonBar extends StatefulWidget {
 }
 
 class _BottomButtonBarState extends State<BottomButtonBar> {
-    Future getImage() async {
-    final pickedFile = await this.widget.picker.getImage(source: ImageSource.gallery);
+  Future getImage() async {
+    final pickedFile =
+        await this.widget.picker.getImage(source: ImageSource.gallery);
     this.widget.galleryButtonOnClick(pickedFile);
   }
 
@@ -32,18 +39,14 @@ class _BottomButtonBarState extends State<BottomButtonBar> {
           height: 70,
           width: 70,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
-            borderRadius: BorderRadius.all(
-              const Radius.circular(50)
-            )
-          ),
+              color: Colors.white.withOpacity(0.3),
+              borderRadius: BorderRadius.all(const Radius.circular(50))),
           child: CustomPaint(
             foregroundPainter: DrawCircle(
                 lineColor: Colors.amber,
                 completeColor: Colors.white.withOpacity(0.9),
                 completePercent: 100,
-                width: 2.0
-            ),
+                width: 2.0),
           ),
         ),
       ),
@@ -53,35 +56,35 @@ class _BottomButtonBarState extends State<BottomButtonBar> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0.0,
-      left: 0.0,
-      height: 150,
-      width: MediaQuery.of(context).size.width,
-      child: Transform.translate(
-        offset: Offset(0.0, 0.7),
-        child: Padding(
-          padding: EdgeInsets.only(bottom: 0),
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              GestureDetector(
-                child: Image.asset(
-                  "assets/icons/gallery.png",
-                  width: 27,
-                  height: 27,
-                ),
-                onTap: () => {
-                  getImage()
-                },
-              ),
-              Image.asset(
-                "assets/icons/arrow-right.png",
-                width: 15,
-                height: 15,
-                color: this.widget.homeViewState == HomeViewState.init ? Colors.white38 : null,
-              ),
-              /*
+        bottom: 0.0,
+        left: 0.0,
+        height: 150,
+        width: MediaQuery.of(context).size.width,
+        child: Transform.translate(
+            offset: Offset(0.0, 0.7),
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  GestureDetector(
+                    child: Image.asset(
+                      "assets/icons/gallery.png",
+                      width: 27,
+                      height: 27,
+                    ),
+                    onTap: () => {getImage()},
+                  ),
+                  Image.asset(
+                    "assets/icons/arrow-right.png",
+                    width: 15,
+                    height: 15,
+                    color: this.widget.homeViewState == HomeViewState.init
+                        ? Colors.white38
+                        : null,
+                  ),
+                  /*
               GestureDetector(
                 child: Image.asset(
                   "assets/images/generate-button.png",
@@ -93,26 +96,29 @@ class _BottomButtonBarState extends State<BottomButtonBar> {
                 },
               ),
               */
-              GestureDetector(
-                child: Image.asset(
-                  "assets/icons/focus.png",
-                  width: 27,
-                  height: 27,
-                  color: this.widget.homeViewState == HomeViewState.init ? Colors.white38 : null,
-                ),
-                onTap: this.widget.focusButtonOnClick,
+                  GestureDetector(
+                    child: Image.asset(
+                      "assets/icons/focus.png",
+                      width: 27,
+                      height: 27,
+                      color: this.widget.homeViewState == HomeViewState.init
+                          ? Colors.white38
+                          : null,
+                    ),
+                    onTap: this.widget.focusButtonOnClick,
+                  ),
+                  Image.asset(
+                    "assets/icons/arrow-right.png",
+                    width: 15,
+                    height: 15,
+                    color: this.widget.homeViewState == HomeViewState.init ||
+                            this.widget.homeViewState == HomeViewState.gallery
+                        ? Colors.white38
+                        : null,
+                  ),
+                  cameraButton(),
+                ],
               ),
-              Image.asset(
-                "assets/icons/arrow-right.png",
-                width: 15,
-                height: 15,
-                color: this.widget.homeViewState == HomeViewState.init ||  this.widget.homeViewState == HomeViewState.gallery ? Colors.white38 : null,
-              ),
-              cameraButton(),
-            ],
-          ),
-        )
-      )
-    );
+            )));
   }
 }

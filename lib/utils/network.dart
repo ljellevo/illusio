@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class Network {
   Future<http.Response> uploadImage(String imagePlayload) async {
     /*
@@ -36,5 +35,4 @@ class Network {
     print(responseJson);
     return response;
   }
-
 }

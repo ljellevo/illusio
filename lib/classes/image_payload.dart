@@ -13,7 +13,7 @@ class ImagePlayload {
   }
 
   Map<String, dynamic> toJson() => {
-    'effect': _effect,
-    'image': _image,
-  };
+        'effect': _effect,
+        'image': _image,
+      };
 }

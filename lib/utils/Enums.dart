@@ -1,6 +1,1 @@
-enum HomeViewState {
-  init,
-  gallery,
-  focus,
-  ready
-}
+enum HomeViewState { init, gallery, focus, ready }
